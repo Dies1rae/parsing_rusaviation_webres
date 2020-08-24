@@ -52,10 +52,11 @@ int main() {
 			string::size_type ptr_pos_arrival_aerodrome = tmp_buff.find("\"x-grid3-cell-inner x-grid3-col-grid_fpl-arrival_aerodrome\"");
 			string::size_type ptr_pos_status_datetime = tmp_buff.find("\"x-grid3-cell-inner x-grid3-col-grid_fpl-status_datetime\"");
 			string::size_type ptr_pos_comments = tmp_buff.find("\"x-grid3-cell-inner x-grid3-col-grid_fpl-operator_rmk\"");
+			string::size_type ptr_pos_status = tmp_buff.find("\"x-grid3-cell-inner x-grid3-col-grid_fpl-status\"");
 
 
 			while (ptr_pos_fpl != string::npos && ptr_pos_filling_data != string::npos && ptr_pos_aircraft != string::npos && ptr_pos_departure_datetime != string::npos
-			&& ptr_pos_departure_aerodrome != string::npos && ptr_pos_arrival_datetime != string::npos && ptr_pos_arrival_aerodrome != string::npos/* && ptr_pos_status_datetime != string::npos*/) {
+			&& ptr_pos_departure_aerodrome != string::npos && ptr_pos_arrival_datetime != string::npos && ptr_pos_arrival_aerodrome != string::npos && ptr_pos_status != string::npos) {
 
 				string fpl_type = tmp_buff.substr(ptr_pos_fpl + 72, 3);
 				//cout << "TLG: " << fpl_type << " | ";
@@ -89,15 +90,17 @@ int main() {
 					status_datetime = "CANCELLED";
 				}
 
-
+				string status = tmp_buff.substr(ptr_pos_status + 94, 8);
 				
-				string final = fpl_type + "," + filling_datetime + "," + aircraft_ident + "," + departure_datetime + "," + departure_aerodrome + "," + arrival_datetime + "," + arrival_aerodrome + "," + status_datetime;
+				string final = fpl_type + "," + filling_datetime + "," + aircraft_ident + "," + departure_datetime + "," + departure_aerodrome + "," + arrival_datetime + "," + arrival_aerodrome + "," + status_datetime + "," + status;
 				
 				cout << final << endl;
 				//system("PAUSE");
 				flyght_base.push_back(final);
 				final.clear();
 
+
+				ptr_pos_status = tmp_buff.find("\"x-grid3-cell-inner x-grid3-col-grid_fpl-status\"", ptr_pos_status + 1);
 				ptr_pos_comments = tmp_buff.find("\"x-grid3-cell-inner x-grid3-col-grid_fpl-operator_rmk\"", ptr_pos_comments + 1);
 				ptr_pos_status_datetime = tmp_buff.find("\"x-grid3-cell-inner x-grid3-col-grid_fpl-status_datetime\"", ptr_pos_status_datetime + 1);
 				ptr_pos_arrival_aerodrome = tmp_buff.find("\"x-grid3-cell-inner x-grid3-col-grid_fpl-arrival_aerodrome\"", ptr_pos_arrival_aerodrome + 1);
@@ -124,6 +127,8 @@ int main() {
 	return 0;
 }
 
+
+//x-grid3-cell-inner x-grid3-col-grid_fpl-status
 //x-grid3-cell-inner x-grid3-col-grid_fpl-operator_rmk
 //x-grid3-cell-inner x-grid3-col-grid_fpl-status_datetime
 //x-grid3-cell-inner x-grid3-col-grid_fpl-arrival_aerodrome
