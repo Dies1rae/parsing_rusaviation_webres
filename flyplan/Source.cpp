@@ -61,22 +61,22 @@ int main() {
 				string fpl_type = tmp_buff.substr(ptr_pos_fpl + 72, 3);
 				//cout << "TLG: " << fpl_type << " | ";
 
-				string filling_datetime = tmp_buff.substr(ptr_pos_filling_data + 76, 19);
+				string filling_datetime = tmp_buff.substr(ptr_pos_filling_data + 76, 17);
 				//cout << "FILLING DATE: " << filling_datetime << " | ";
 
 				string aircraft_ident = tmp_buff.substr(ptr_pos_aircraft + 78, 7);
 				//cout << "AIRCRAFT NUMBER: " << aircraft_ident << " | ";
 
-				string departure_datetime = tmp_buff.substr(ptr_pos_departure_datetime + 79, 16);
+				string departure_datetime = tmp_buff.substr(ptr_pos_departure_datetime + 79, 14);
 				//cout << "DEPARTURE DATE: " << departure_datetime << " | ";
 
-				string departure_aerodrome = tmp_buff.substr(ptr_pos_departure_aerodrome + 82, 5);
+				string departure_aerodrome = tmp_buff.substr(ptr_pos_departure_aerodrome + 83, 4);
 				//cout << "DEPARTURE AERODROME: " << departure_aerodrome << " | ";
 
-				string arrival_datetime = tmp_buff.substr(ptr_pos_arrival_datetime + 77, 16);
+				string arrival_datetime = tmp_buff.substr(ptr_pos_arrival_datetime + 77, 14);
 				//cout << "ARRIVAL DATE: " << arrival_datetime << " | ";
 
-				string arrival_aerodrome = tmp_buff.substr(ptr_pos_arrival_aerodrome + 80, 5);
+				string arrival_aerodrome = tmp_buff.substr(ptr_pos_arrival_aerodrome + 81, 4);
 				//cout << "ARRIVAL AERODROME: " << arrival_aerodrome << " | ";
 
 				string comments = tmp_buff.substr(ptr_pos_comments + 73, 5);
